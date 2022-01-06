@@ -13,18 +13,29 @@ import db from '../config';
 
 export default class HomeScreen extends Component {
 
-  teamA(){
-   db.ref('/').update({
-     'teamA':1
-   })
- }
+  constructor (){
+    super();
+    this.state={
+      countA:0,
+      countB:0
+    }
+  }
 
- teamB(){
-   console.log(db);
-   db.ref('/').update({
-     'teamB':2
-   })
- }
+  teamA(){
+   
+    db.ref('/').update({
+      'teamA':this.state.countA
+    })
+  }
+ 
+  teamB(){
+    console.log(db);
+   
+    db.ref('/').update({
+      'teamB':this.state.countB
+    })
+  }
+ 
 
   render() {
     return (
@@ -43,13 +54,20 @@ export default class HomeScreen extends Component {
             <Text style={{ textAlign: 'center',fontSize:25 }}>Vote Here</Text>
             <TouchableOpacity
               style={styles.buttons}
-              onPress ={this.teamA()}>
+              onPress ={()=>{
+                this.setState({ countA:this.state.countA+1})
+                this.teamA()
+                this.props.navigation.navigate('ThankingScreen')}}>
               <Text style={{ fontSize:20}}>Team A</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.buttons}
-              onPress ={this.teamB()}>
+              onPress ={()=>{
+                 this.setState({countB:this.state.countB+1})
+                 this.teamB()
+                 this.props.navigation.navigate('ThankingScreen')}}
+                 >
               <Text style={{ fontSize:20}}>Team B</Text>
             </TouchableOpacity>
 
