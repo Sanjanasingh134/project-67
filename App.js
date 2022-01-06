@@ -6,6 +6,7 @@ import Constants from 'expo-constants';
 
 // You can import from local files
 import HomeScreen from './screens/HomeScreen';
+import ThankingScreen from './screens/ThankingScreen';
 
 export default class App extends React.Component {
   render() {
@@ -18,7 +19,8 @@ export default class App extends React.Component {
 }
 
 var AppNavigator = createSwitchNavigator({
-  HomeScreen: HomeScreen
+  HomeScreen: HomeScreen,
+  ThankingScreen: ThankingScreen
 });
 
 const AppContainer = createAppContainer(AppNavigator);
